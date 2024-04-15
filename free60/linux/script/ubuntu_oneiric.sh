@@ -1,7 +1,7 @@
 #!/bin/bash
 # set the date to anything except 1/1/1970 since this causes issues
 # time is now also set after first boot by .bashrc script below
-date -s 1/1/2009
+date -s 1/1/2024
 # if /dev/sda is mounted then paritions get wiped by dd but sfdisk fails!
 swapoff /dev/sda1
 umount /mnt/ubuntu
@@ -23,13 +23,13 @@ cd /mnt/ubuntu
 mkdir /mnt/ubuntu/work
 cd /mnt/ubuntu/work
 # download extract and run debootstrap
-wget http://ftp.nl.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.38_all.deb
-ar -xf debootstrap_1.0.38_all.deb
+wget http://ftp.nl.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.134_all.deb
+ar -xf debootstrap_1.0.134_all.deb
 cd /mnt/ubuntu
 zcat < /mnt/ubuntu/work/data.tar.gz | tar xv
 export DEBOOTSTRAP_DIR=/mnt/ubuntu/usr/share/debootstrap
 export PATH=$PATH:/mnt/ubuntu/usr/sbin
-debootstrap --arch powerpc oneiric /mnt/ubuntu http://ports.ubuntu.com/
+debootstrap --arch powerpc oneiric /mnt/ubuntu http://old-releases.ubuntu.com/ubuntu/
 # create needed files on hdd
 echo Xenon > /mnt/ubuntu/etc/hostname
 cat > /mnt/ubuntu/etc/fstab << EOF
@@ -45,17 +45,17 @@ iface eth0 inet dhcp
 EOF
 cat > /mnt/ubuntu/etc/apt/sources.list << EOF
 # Main
-deb http://ports.ubuntu.com/ubuntu-ports/ oneiric main restricted
-deb http://ports.ubuntu.com/ubuntu-ports/ oneiric universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ oneiric main restricted
+deb http://old-releases.ubuntu.com/ubuntu/ oneiric universe multiverse
 # Updates
-deb http://ports.ubuntu.com/ubuntu-ports/ oneiric-updates main restricted
-deb-src http://ports.ubuntu.com/ubuntu-ports/ oneiric-updates restricted
-deb http://ports.ubuntu.com/ubuntu-ports/ oneiric-updates universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ oneiric-updates main restricted
+deb-src http://old-releases.ubuntu.com/ubuntu/ oneiric-updates restricted
+deb http://old-releases.ubuntu.com/ubuntu/ oneiric-updates universe multiverse
 # Security
-deb http://ports.ubuntu.com/ubuntu-ports/ oneiric-security main restricted
-deb-src http://ports.ubuntu.com/ubuntu-ports/ oneiric-security main restricted
-deb http://ports.ubuntu.com/ubuntu-ports/ oneiric-security universe multiverse
-deb-src http://ports.ubuntu.com/ubuntu-ports/ oneiric-security universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ oneiric-security main restricted
+deb-src http://old-releases.ubuntu.com/ubuntu/ oneiric-security main restricted
+deb http://old-releases.ubuntu.com/ubuntu/ oneiric-security universe multiverse
+deb-src http://old-releases.ubuntu.com/ubuntu/ oneiric-security universe multiverse
 EOF
 #Change root-pwd to "xbox" inside chroot
 chroot /mnt/ubuntu echo "root:xbox" | chroot /mnt/ubuntu /usr/sbin/chpasswd
