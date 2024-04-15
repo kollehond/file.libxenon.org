@@ -74,9 +74,9 @@ apt-get install ubuntu-desktop -y
 echo "AVAHI_DAEMON_START=0" > /etc/default/avahi-daemon
 /etc/init.d/networking restart
 cd /usr/lib/xorg/modules/drivers/
-wget -O xenosfb_drv.so http://file.libxenon.org/free60/linux/xenosfb/xenosfb_drv.so_oneiric
+wget -O xenosfb_drv.so https://github.com/kollehond/free60/linux/xenosfb/xenosfb_drv.so_oneiric
 cd /etc/X11/
-wget http://file.libxenon.org/free60/linux/xenosfb/xorg.conf
+wget https://github.com/kollehond/free60/linux/xenosfb/xorg.conf
 rm -r -f /work/
 echo "Installation completed."
 echo "To boot the system: Reboot and load the kernel with correct root= params."
