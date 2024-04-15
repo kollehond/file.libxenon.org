@@ -66,7 +66,7 @@ chroot /mnt/ubuntu /usr/sbin/adduser xbox sudo
 # create .second_stage script on hdd
 cat >> /mnt/ubuntu/root/.second_stage << EOF
 #!/bin/bash
-date -s 1/1/2009
+date -s 1/1/2024
 apt-get update
 apt-get install ntp wget openssh-server locales -y --force-yes
 dpkg-reconfigure locales
